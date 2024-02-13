@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { isValidDate } from '../utils/is-valid-date';
 
 @Pipe({
   name: 'customPipe',
 })
 export class CustomPipe implements PipeTransform {
   transform(value: string): string {
-    if (!value) return value;
+    if (!value || !isValidDate(value)) return value;
 
     const date = new Date(value);
     const formattedDate = date.toLocaleString('en-US', {

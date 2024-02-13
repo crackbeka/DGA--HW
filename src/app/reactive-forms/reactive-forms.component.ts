@@ -36,6 +36,9 @@ export class ReactiveFormsComponent {
       const companyData = this.myForm!.value as Company;
       this.submittedCompanies.push(companyData);
       this.myForm?.reset();
+      Object.keys(this.myForm!.controls).forEach((key) => {
+        this.myForm!.controls[key].setErrors(null);
+      });
     }
   }
 

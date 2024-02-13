@@ -38,6 +38,9 @@ export class ModalComponent {
       console.log(companyData);
       this.submittedPositions.push(companyData);
       this.myForm?.reset();
+      Object.keys(this.myForm!.controls).forEach((key) => {
+        this.myForm!.controls[key].setErrors(null);
+      });
     }
   }
 

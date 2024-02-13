@@ -1,12 +1,28 @@
-<!-- <mat-card class="example-card" *ngFor="let movie of movies$ | async">
-  <mat-card-header>
-    <h1>{{ movie.i }}</h1>
-    <mat-card-title>{{ movie.l }}</mat-card-title>
-  </mat-card-header>
-  <img mat-card-image src="{{ movie.imageUrl }}" />
-  <mat-card-content>
-    <p>
-      {{ movie.s }}
-    </p>
-  </mat-card-content>
-</mat-card> -->
+<div class="p-2">
+  <div class="w-1/2 my-4 border border-black rounded-sm">
+    <input
+      type="search"
+      [(ngModel)]="query"
+      (input)="search(query)"
+      placeholder="Search"
+      class="w-full p-2"
+    />
+  </div>
+  <div class="grid grid-cols-4 gap-4 w-full" *ngIf="movies$ | async as movies">
+    <mat-card class="flex" *ngFor="let movie of movies">
+      <mat-card-header>
+        <mat-card-title>{{ movie?.l }}</mat-card-title>
+      </mat-card-header>
+      <img
+        *ngIf="movie?.i"
+        mat-card-image
+        [src]="movie?.i.imageUrl"
+        [width]="movie?.i.width"
+        [height]="movie?.i.height"
+      />
+      <mat-card-content>
+        <p>{{ movie?.s }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
