@@ -1,0 +1,45 @@
+<form [formGroup]="myForm!" class="w-[50%] m-auto mt-4">
+  <div class="flex flex-col items-center p-3">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Company Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Company Web Page</mat-label>
+      <input matInput formControlName="web" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Company Description</mat-label>
+      <textarea matInput formControlName="desc"></textarea>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      class="w-full"
+      (click)="addCompany()"
+    >
+      ADD COMPANY
+    </button>
+  </div>
+</form>
+
+<div
+  *ngFor="let company of submittedCompanies; index as i"
+  class="w-full mt-4 flex justify-between"
+>
+  <mat-card class="w-[30%] flex">
+    <mat-card-header>
+      <mat-card-title>{{ company.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ company.web }}</p>
+      <p>{{ company.desc }}</p>
+    </mat-card-content>
+    <mat-card-actions class="flex justify-between mt-4">
+      <button mat-button color="secondary" (click)="openModal()">
+        Add position
+      </button>
+      <button mat-button color="warn" (click)="deleteCompany(i)">Delete</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

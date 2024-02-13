@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4 text-right">
+        <mat-button-toggle-group name="viewMode" aria-label="View Mode">
+          <mat-button-toggle value="month" (click)="setView(CalendarView.Month)"
+            >თვე</mat-button-toggle
+          >
+          <mat-button-toggle value="week" (click)="setView(CalendarView.Week)"
+            >კვირა</mat-button-toggle
+          >
+          <mat-button-toggle value="day" (click)="setView(CalendarView.Day)"
+            >დღე</mat-button-toggle
+          >
+        </mat-button-toggle-group>
+      </div>
+      <div class="col-md-4 text-center">
+        <h3>
+          {{ viewDate | date : "mediumDate" }}
+        </h3>
+      </div>
+    </div>
+    <br />
+    <div [ngSwitch]="view" *ngIf="selectedView == 'grid'">
+      <mwl-calendar-month-view
+        *ngSwitchCase="CalendarView.Month"
+        [viewDate]="viewDate"
+        [activeDayIsOpen]="activeDayIsOpen"
+        [events]="events"
+      >
+      </mwl-calendar-month-view>
+      <mwl-calendar-week-view
+        *ngSwitchCase="CalendarView.Week"
+        [viewDate]="viewDate"
+        [events]="events"
+      >
+      </mwl-calendar-week-view>
+      <mwl-calendar-day-view
+        *ngSwitchCase="CalendarView.Day"
+        [viewDate]="viewDate"
+        [events]="events"
+      >
+      </mwl-calendar-day-view>
+    </div>
+    <div></div>
+  </div>
+</div>
