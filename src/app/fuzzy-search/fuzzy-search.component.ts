@@ -6,7 +6,12 @@ import { Component } from '@angular/core';
 })
 export class FuzzySearchComponent {
   searchText: string = '';
-  items: string[] = ['apple', 'banana', 'orange', 'watermelon', 'kiwi'];
+  items: string[] = [
+    'ქონება',
+    'ქონების პრივატიზება',
+    'ქონების გასხვისება',
+    'საქონლის გასხვისება',
+  ];
   searchResults: { item: string; percentage: number }[] = [];
 
   constructor() {}
